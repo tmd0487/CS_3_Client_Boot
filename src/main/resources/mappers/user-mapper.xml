@@ -27,4 +27,12 @@
         SELECT user_id from user where email = #{email}
     </select>
 
+    <select id="userDataById" resultType="com.kedu.project.user.UserDTO">
+        SELECT * from user where user_id = #{user_id}
+    </select>
+
+    <select id="familyCodeChack" resultType="com.kedu.project.user.UserDTO">
+        SELECT family_code from user where family_code = #{family_code}
+    </select>
+
 </mapper>

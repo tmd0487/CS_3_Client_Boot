@@ -1,5 +1,7 @@
 package com.kedu.project.user;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,12 +19,20 @@ public class UserDAO {
         return mybatis.selectOne("user.nickNameChack", dto.getNickname());
     }
 
+    public boolean familyCodeChack(String family_code){
+        return mybatis.selectOne("user.familyCodeChack", family_code);
+    }
+
     public int signup(UserDTO dto) {
         return mybatis.insert("user.signup", dto);
     }
 
     public String login(UserDTO dto) {
         return mybatis.selectOne("user.login", dto);
+    }
+
+    public UserDTO userDataById(UserDTO dto){
+        return mybatis.selectOne("user.userDataById", dto);
     }
 
     public String pindIdByEmail(UserDTO dto) {

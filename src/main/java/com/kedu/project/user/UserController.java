@@ -34,7 +34,6 @@ public class UserController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody UserDTO dto) {
         Map<String, String> map = userService.login(dto);
-        System.out.println(map.get("babySeq"));
         if (map.get("babySeq") != null) {
             return ResponseEntity.ok(map);
         } else {
