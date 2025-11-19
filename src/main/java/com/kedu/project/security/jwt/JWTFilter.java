@@ -36,11 +36,11 @@ public class JWTFilter extends OncePerRequestFilter {
         try {
             if (jwt.validateToken(token)) {
                 String id = jwt.getIdFromToken(token);
-                // List<String> roles = jwt.getRolesFromToken(token);
+                // List<Integer> babySeqList = jwt.getRolesFromToken(token);
 
                 // List<SimpleGrantedAuthority> auths = new ArrayList<>(); // 권한 목록 저장용 리스트
-                // for (String role : roles) {
-                //     auths.add(new SimpleGrantedAuthority("ROLE_" + role));
+                // for (Integer babySeq : babySeqList) {
+                //     auths.add(new SimpleGrantedAuthority("babySeq" + babySeq));
                 // }
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(id, null);
                         // auths);

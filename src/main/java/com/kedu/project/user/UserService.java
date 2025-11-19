@@ -34,7 +34,7 @@ public class UserService {
     public int signup(UserDTO dto) {
         dto.setPassword(EncryptionUtil.encrypt(dto.getPassword()));
         String familyCode = dto.getFamily_code();
-        if (familyCode == null) {
+        if (familyCode == "") {
             dto.setFamily_code(familyCodeMake());
         }
         return dao.signup(dto);
@@ -44,8 +44,10 @@ public class UserService {
         dto.setPassword(EncryptionUtil.encrypt(dto.getPassword()));
         // 유저 정보 포장
         UserDTO user = dao.userDataById(dto);
+        System.out.println(user.getUser_id());
         // 애기 시퀀스 ( return용 )
         String babySeq = String.valueOf(user.getLast_baby());
+        System.out.println(babySeq);
         // 유저의 애기 시퀀스 리스트
         List<Integer> babySeqList = babydao.getBabySeqList(user);
         String token = jwt.createToken(dto.getUser_id(), babySeqList);
@@ -74,8 +76,8 @@ public class UserService {
                 // 해당 인덱스의 문자를 StringBuilder에 추가
                 result.append(characters.charAt(index));
             }
-            boolean exists = dao.familyCodeChack(result.toString());
-            if(!exists){
+            int exists = dao.familyCodeChack(result.toString());
+            if(exists==0){
                 return result.toString();
             }
         }

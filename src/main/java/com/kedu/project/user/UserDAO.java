@@ -19,7 +19,7 @@ public class UserDAO {
         return mybatis.selectOne("user.nickNameChack", dto.getNickname());
     }
 
-    public boolean familyCodeChack(String family_code){
+    public int familyCodeChack(String family_code){
         return mybatis.selectOne("user.familyCodeChack", family_code);
     }
 
